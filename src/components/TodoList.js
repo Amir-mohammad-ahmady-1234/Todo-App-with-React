@@ -1,16 +1,12 @@
-export default function TodoList() {
+import Todo from "./Todo";
+
+export default function TodoList({ todos }) {
   return (
     <ul className="todo__list" id="todo-list">
       {/* items added by JavaScript */}
-      <li className="todo__elem todo__elem--checked">
-        <button className="btn todo__check">
-          <img src=".\img\icon-check.svg" alt="no intenet" />
-        </button>
-        <p>learn react</p>
-        <button className="btn todo__delete">
-          <img src="./img/icon-cross.svg" alt="no intenet" />
-        </button>
-      </li>
+      {todos.map((todo) => (
+        <Todo todo={todo} key={todo.id} />
+      ))} 
     </ul>
   );
 }

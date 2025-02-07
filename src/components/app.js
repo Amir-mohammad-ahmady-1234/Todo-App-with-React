@@ -6,11 +6,23 @@ import TodoFilters from "./TodoFilters";
 import TodoList from "./TodoList";
 import TodoRaidoFilters from "./TodoRaidoFilters";
 
+const initialTodos = [
+  {id: 1, name: 'Learn React', status: false},
+  {id: 2, name: 'Learn Npm', status: true},
+  {id: 3, name: 'Learn Tailwind', status: false},
+]
+
+
 export default function App() {
   const [theme, setTheme] = useState("darkTheme");
+  const [todos, setTodos] = useState(initialTodos)
 
   function handleThemeChaning() {
     setTheme(theme => theme === 'darkTheme' ? 'lightTheme' : 'darkTheme')
+  }
+
+  function handleAddingTodoToList (newTodo) {
+    setTodos(todos => [...todos, newTodo])
   }
 
   return (
@@ -19,11 +31,11 @@ export default function App() {
         <div className="todo">
           <header className="header">
             <Header onThemeChaning={handleThemeChaning} />
-            <AddTodo />
+            <AddTodo onAddingTodoToList={handleAddingTodoToList} />
           </header>
 
           <main className="main">
-            <TodoList />
+            <TodoList todos={todos} />
             <div className="todo__filters">
               <TodoFilters />
               <TodoRaidoFilters />
