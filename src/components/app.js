@@ -52,8 +52,19 @@ export default function App() {
   }
 
   function handleTodoRemoving(todo) {
-    setTodos(todos => todos.filter(hobit => hobit.id !== todo.id))
-    setRadioFilter(todos => todos.filter(hobit => hobit.id !== todo.id))
+    setTodos((todos) => todos.filter((hobit) => hobit.id !== todo.id));
+    setRadioFilter((todos) => todos.filter((hobit) => hobit.id !== todo.id));
+  }
+
+  function handleRemovingCompletedTodos() {
+    const isRemoved = window.confirm(
+      "Are you sure you want to delete completed tasks?"
+    );
+
+    if (!isRemoved) return;
+
+    setTodos((todos) => todos.filter((habit) => habit.status === false));
+    setRadioFilter((todos) => todos.filter((habit) => habit.status === false));
   }
 
   return (
@@ -72,7 +83,9 @@ export default function App() {
               onTodoRemoving={handleTodoRemoving}
             />
             <div className="todo__filters">
-              <TodoFilters />
+              <TodoFilters
+                onRemovingCompletedTodos={handleRemovingCompletedTodos}
+              />
               <TodoRaidoFilters
                 onCompletedTodos={handleCompletedTodos}
                 onActiveTodos={handleActiveTodos}
