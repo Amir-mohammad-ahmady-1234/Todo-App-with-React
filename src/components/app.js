@@ -59,14 +59,18 @@ export default function App() {
   }
 
   function handleRemovingCompletedTodos() {
-    const isRemoved = window.confirm(
-      "Are you sure you want to delete completed tasks?"
-    );
+    if (todos.filter(habit => habit.status === true).length > 0) {
+      const isRemoved = window.confirm(
+        "Are you sure you want to delete completed tasks?"
+      );
+  
+      if (!isRemoved) return;
+  
+      setTodos((todos) => todos.filter((habit) => habit.status === false));
+      setRadioFilter((todos) => todos.filter((habit) => habit.status === false));
 
-    if (!isRemoved) return;
+    }
 
-    setTodos((todos) => todos.filter((habit) => habit.status === false));
-    setRadioFilter((todos) => todos.filter((habit) => habit.status === false));
   }
 
   return (
