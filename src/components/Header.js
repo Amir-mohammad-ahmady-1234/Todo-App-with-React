@@ -1,8 +1,8 @@
-export default function Header() {
+export default function Header({ onThemeChaning }) {
   return (
     <section className="logo">
       <h2 className="logo__title">TODO</h2>
-      <button className="btn btn--theme" id="theme-toggle">
+      <button className="btn btn--theme" onClick={onThemeChaning}>
         <img
           className="todo__elem--hide"
           src="./img/icon-moon.svg"
