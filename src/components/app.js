@@ -7,22 +7,29 @@ import TodoList from "./TodoList";
 import TodoRaidoFilters from "./TodoRaidoFilters";
 
 const initialTodos = [
-  {id: 1, name: 'Learn React', status: false},
-  {id: 2, name: 'Learn Npm', status: true},
-  {id: 3, name: 'Learn Tailwind', status: false},
-]
-
+  { id: 1, name: "Learn React", status: false },
+  { id: 2, name: "Learn Npm", status: true },
+  { id: 3, name: "Learn Tailwind", status: false },
+];
 
 export default function App() {
   const [theme, setTheme] = useState("darkTheme");
-  const [todos, setTodos] = useState(initialTodos)
+  const [todos, setTodos] = useState(initialTodos);
 
   function handleThemeChaning() {
-    setTheme(theme => theme === 'darkTheme' ? 'lightTheme' : 'darkTheme')
+    setTheme((theme) => (theme === "darkTheme" ? "lightTheme" : "darkTheme"));
   }
 
-  function handleAddingTodoToList (newTodo) {
-    setTodos(todos => [...todos, newTodo])
+  function handleAddingTodoToList(newTodo) {
+    setTodos((todos) => [...todos, newTodo]);
+  }
+
+  function handleStatusChanged(todo) {
+    setTodos((todos) =>
+      todos.map((hobit) =>
+        todo.id === hobit.id ? { ...hobit, status: !hobit.status } : hobit
+      )
+    );
   }
 
   return (
@@ -35,7 +42,7 @@ export default function App() {
           </header>
 
           <main className="main">
-            <TodoList todos={todos} />
+            <TodoList todos={todos} onStatusChanged={handleStatusChanged} />
             <div className="todo__filters">
               <TodoFilters />
               <TodoRaidoFilters />
