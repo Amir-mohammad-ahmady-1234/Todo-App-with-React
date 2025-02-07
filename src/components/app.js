@@ -15,6 +15,7 @@ const initialTodos = [
 export default function App() {
   const [theme, setTheme] = useState("darkTheme");
   const [todos, setTodos] = useState(initialTodos);
+  const [radioFilter, setRadioFilter] = useState(todos);
 
   function handleThemeChaning() {
     setTheme((theme) => (theme === "darkTheme" ? "lightTheme" : "darkTheme"));
@@ -22,6 +23,7 @@ export default function App() {
 
   function handleAddingTodoToList(newTodo) {
     setTodos((todos) => [...todos, newTodo]);
+    setRadioFilter((todos) => [...todos, newTodo]);
   }
 
   function handleStatusChanged(todo) {
@@ -30,6 +32,23 @@ export default function App() {
         todo.id === hobit.id ? { ...hobit, status: !hobit.status } : hobit
       )
     );
+    setRadioFilter((todos) =>
+      todos.map((hobit) =>
+        todo.id === hobit.id ? { ...hobit, status: !hobit.status } : hobit
+      )
+    );
+  }
+
+  function handleAllTodos() {
+    setRadioFilter(todos);
+  }
+
+  function handleActiveTodos() {
+    setRadioFilter(todos.filter((todo) => todo.status === false));
+  }
+
+  function handleCompletedTodos() {
+    setRadioFilter(todos.filter((todo) => todo.status === true));
   }
 
   return (
@@ -42,10 +61,17 @@ export default function App() {
           </header>
 
           <main className="main">
-            <TodoList todos={todos} onStatusChanged={handleStatusChanged} />
+            <TodoList
+              todos={radioFilter}
+              onStatusChanged={handleStatusChanged}
+            />
             <div className="todo__filters">
               <TodoFilters />
-              <TodoRaidoFilters />
+              <TodoRaidoFilters
+                onCompletedTodos={handleCompletedTodos}
+                onActiveTodos={handleActiveTodos}
+                onAllTodos={handleAllTodos}
+              />
             </div>
           </main>
 

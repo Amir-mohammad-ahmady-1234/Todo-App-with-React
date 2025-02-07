@@ -1,4 +1,8 @@
-export default function TodoRaidoFilters() {
+export default function TodoRaidoFilters({
+  onActiveTodos,
+  onCompletedTodos,
+  onAllTodos,
+}) {
   return (
     <div className="todo__filters__center">
       <input
@@ -7,6 +11,7 @@ export default function TodoRaidoFilters() {
         id="all"
         value="all"
         className="btn btn--bold"
+        onClick={onAllTodos}
         defaultChecked
       />
       <label className="btn btn--bold" htmlFor="all">
@@ -19,6 +24,7 @@ export default function TodoRaidoFilters() {
         id="active"
         value="active"
         className="btn btn--bold"
+        onClick={onActiveTodos}
       />
       <label className="btn btn--bold" htmlFor="active">
         Active
@@ -30,6 +36,7 @@ export default function TodoRaidoFilters() {
         id="completed"
         value="completed"
         className="btn btn--bold"
+        onClick={onCompletedTodos}
       />
       <label className="btn btn--bold" htmlFor="completed">
         Completed
