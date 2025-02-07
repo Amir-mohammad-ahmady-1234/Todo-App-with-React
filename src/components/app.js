@@ -17,6 +17,8 @@ export default function App() {
   const [todos, setTodos] = useState(initialTodos);
   const [radioFilter, setRadioFilter] = useState(todos);
 
+  const NotCompleted = todos.filter(habit => habit.status === false).length
+
   function handleThemeChaning() {
     setTheme((theme) => (theme === "darkTheme" ? "lightTheme" : "darkTheme"));
   }
@@ -85,6 +87,7 @@ export default function App() {
             <div className="todo__filters">
               <TodoFilters
                 onRemovingCompletedTodos={handleRemovingCompletedTodos}
+                NotCompleted={NotCompleted}
               />
               <TodoRaidoFilters
                 onCompletedTodos={handleCompletedTodos}

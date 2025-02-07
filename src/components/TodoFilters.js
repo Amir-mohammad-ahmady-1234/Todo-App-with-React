@@ -1,8 +1,11 @@
-export default function TodoFilters({ onRemovingCompletedTodos }) {
+export default function TodoFilters({
+  onRemovingCompletedTodos,
+  NotCompleted,
+}) {
   return (
     <div className="todo__filters__sides">
       <p className="btn">
-        <span id="items-left">5</span> item(s) left
+        <span id="items-left">{NotCompleted}</span> item(s) left
       </p>
       <button
         className="btn btn--clear"
