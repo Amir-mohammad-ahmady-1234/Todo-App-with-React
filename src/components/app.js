@@ -51,6 +51,11 @@ export default function App() {
     setRadioFilter(todos.filter((todo) => todo.status === true));
   }
 
+  function handleTodoRemoving(todo) {
+    setTodos(todos => todos.filter(hobit => hobit.id !== todo.id))
+    setRadioFilter(todos => todos.filter(hobit => hobit.id !== todo.id))
+  }
+
   return (
     <div className="preload-transitions" data-theme={theme}>
       <div className="main__container">
@@ -64,6 +69,7 @@ export default function App() {
             <TodoList
               todos={radioFilter}
               onStatusChanged={handleStatusChanged}
+              onTodoRemoving={handleTodoRemoving}
             />
             <div className="todo__filters">
               <TodoFilters />

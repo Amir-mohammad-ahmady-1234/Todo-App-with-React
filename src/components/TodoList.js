@@ -1,6 +1,6 @@
-import Todo from "./Todo";
+import Todo from "./Todo"; 
 
-export default function TodoList({ todos, onStatusChanged }) {
+export default function TodoList({ todos, onStatusChanged, onTodoRemoving }) {
   return (
     <ul className="todo__list" id="todo-list">
       {/* items added by JavaScript */}
@@ -8,6 +8,7 @@ export default function TodoList({ todos, onStatusChanged }) {
         <Todo
           todo={todo}
           onStatusChanged={onStatusChanged}
+          onTodoRemoving={onTodoRemoving}
           key={todo.id}
         />
       ))}

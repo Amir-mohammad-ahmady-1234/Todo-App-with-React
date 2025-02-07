@@ -1,4 +1,4 @@
-export default function Todo({ todo, onStatusChanged }) {
+export default function Todo({ todo, onStatusChanged, onTodoRemoving }) {
   return (
     <li
       className={
@@ -9,7 +9,7 @@ export default function Todo({ todo, onStatusChanged }) {
         <img src=".\img\icon-check.svg" alt="no intenet" />
       </button>
       <p>{todo.name}</p>
-      <button className="btn todo__delete">
+      <button className="btn todo__delete" onClick={() => onTodoRemoving(todo)}>
         <img src="./img/icon-cross.svg" alt="no intenet" />
       </button>
     </li>
